@@ -1,8 +1,6 @@
 # kata-php-skeleton
 
-kata-php-skeleton is a template for kata in php.
-
-unit tests are ready for tdd !
+kata-php-skeleton is a template for kata in php with TDD.
 
 # how to use it
 1. [Init your github repository](https://github.com/new)

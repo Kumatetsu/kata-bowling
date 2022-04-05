@@ -13,6 +13,10 @@ class Solution
 
     public function calculateBowlingScore($frame)
     {
+        if ($frame === 'x') {
+            return 10;
+        }
+
         $formattedFrame = $this->replaceMissBy0($frame);
 
         return (int) $formattedFrame[0] + (int) $formattedFrame[1];

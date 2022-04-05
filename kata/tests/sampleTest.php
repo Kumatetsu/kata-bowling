@@ -26,6 +26,6 @@ class SampleTest extends TestCase
     public function scoreCalculator()
     {
         $solution = new Solution();
-        $this->assertSame($solution->calculateBowlingScore(['--', '--', '--', '--', '--', '--', '--', '--', '--', '--']), 0, 'score should be 0');
+        $this->assertSame($solution->calculateBowlingScore('--'), 0, 'score should be 0');
     }
 }

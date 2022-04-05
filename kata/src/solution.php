@@ -10,4 +10,9 @@ class Solution
     {
         return true;
     }
+
+    public function calculateBowlingScore($frames)
+    {
+        return null;
+    }
 }

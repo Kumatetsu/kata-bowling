@@ -23,7 +23,7 @@ class SampleTest extends TestCase
      * @test
      * @covers
      */
-    public function scoreCalculator()
+    public function oneScoreCalculator()
     {
         $solution = new Solution();
         $this->assertSame($solution->calculateBowlingScore(['--']), 0, 'score should be 0');
@@ -33,9 +33,20 @@ class SampleTest extends TestCase
         $this->assertSame($solution->calculateBowlingScore(['21']), 3, 'score should be 3');
         $this->assertSame($solution->calculateBowlingScore(['x']), 10, 'score should be 10');
         $this->assertSame($solution->calculateBowlingScore(['9/']), 10, 'score should be 10');
+    }
+
+    /**
+     * @test
+     * @covers
+     */
+    public function multipleScoreCalculator()
+    {
+        $solution = new Solution();
         $this->assertSame($solution->calculateBowlingScore(['--', '1-']), 1, 'score should be 1');
         $this->assertSame($solution->calculateBowlingScore(['-5', '2-']), 7, 'score should be 7');
         $this->assertSame($solution->calculateBowlingScore(['-5', '2-', 'x']), 17, 'score should be 17');
-        $this->assertSame($solution->calculateBowlingScore(['-/', '2-']), 4, 'score should be 4');
+        $this->assertSame($solution->calculateBowlingScore(['-/', '2-']), 14, 'score should be 14');
+        $this->assertSame($solution->calculateBowlingScore(['5/', '5/',  '5/',  '5/',  '5/',  '5/',  '5/',  '5/',  '5/',  '5/', '5']), 150, 'score should be 150');
+        $this->assertSame($solution->calculateBowlingScore(['x', 'x',  'x',  'x',  'x',  'x',  'x',  'x',  'x',  'x', 'x', 'x']), 300, 'score should be 300');
     }
 }

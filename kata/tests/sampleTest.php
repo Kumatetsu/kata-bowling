@@ -26,12 +26,12 @@ class SampleTest extends TestCase
     public function scoreCalculator()
     {
         $solution = new Solution();
-        $this->assertSame($solution->calculateBowlingScore('--'), 0, 'score should be 0');
-        $this->assertSame($solution->calculateBowlingScore('1-'), 1, 'score should be 1');
-        $this->assertSame($solution->calculateBowlingScore('2-'), 2, 'score should be 2');
-        $this->assertSame($solution->calculateBowlingScore('-1'), 1, 'score should be 1');
-        $this->assertSame($solution->calculateBowlingScore('21'), 3, 'score should be 3');
-        $this->assertSame($solution->calculateBowlingScore('x'), 10, 'score should be 10');
-        $this->assertSame($solution->calculateBowlingScore('9/'), 10, 'score should be 10');
+        $this->assertSame($solution->calculateBowlingScore(['--']), 0, 'score should be 0');
+        $this->assertSame($solution->calculateBowlingScore(['1-']), 1, 'score should be 1');
+        $this->assertSame($solution->calculateBowlingScore(['2-']), 2, 'score should be 2');
+        $this->assertSame($solution->calculateBowlingScore(['-1']), 1, 'score should be 1');
+        $this->assertSame($solution->calculateBowlingScore(['21']), 3, 'score should be 3');
+        $this->assertSame($solution->calculateBowlingScore(['x']), 10, 'score should be 10');
+        $this->assertSame($solution->calculateBowlingScore(['9/']), 10, 'score should be 10');
     }
 }

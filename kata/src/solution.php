@@ -13,16 +13,22 @@ class Solution
 
     public function calculateBowlingScore(array $frames): int
     {
-        $index = 0;
-        if ($frames[$index] === 'x' || str_contains($frames[$index], '/')) {
+        $score = 0;
+        foreach($frames as $value) {
+            $score += $this->calculateFrameScore($value);
+        }
+
+        return $score;
+    }
+
+    private function calculateFrameScore(string $frame)
+    {
+        if ($frame === 'x' || str_contains($frame, '/')) {
             return 10;
         }
 
-        $formattedFrame = $this->replaceMissBy0($frames[$index]);
+        $formattedFrame = $this->replaceMissBy0($frame);
 
-        if (isset($frames[$index + 1])) {
-            return (int) $formattedFrame[0] + (int) $formattedFrame[1] + $this->calculateBowlingScore(array_slice($frames, 1));
-        }
         return (int) $formattedFrame[0] + (int) $formattedFrame[1];
     }
 

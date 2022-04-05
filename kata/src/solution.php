@@ -11,18 +11,18 @@ class Solution
         return true;
     }
 
-    public function calculateBowlingScore($frame)
+    public function calculateBowlingScore(array $frames): int
     {
-        if ($frame === 'x' || str_contains($frame, '/')) {
+        if ($frames[0] === 'x' || str_contains($frames[0], '/')) {
             return 10;
         }
 
-        $formattedFrame = $this->replaceMissBy0($frame);
+        $formattedFrame = $this->replaceMissBy0($frames[0]);
 
         return (int) $formattedFrame[0] + (int) $formattedFrame[1];
     }
 
-    private function replaceMissBy0($frame)
+    private function replaceMissBy0(string $frame): string
     {
         return str_replace('-', '0', $frame);
     }

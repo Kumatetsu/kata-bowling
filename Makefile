@@ -18,10 +18,15 @@ docker-build:
 docker-ssh:
 	docker exec -it ${DOCKER_IMAGE} bash
 
+docker-restart:
+	make docker-stop
+	make docker-run
+
 docker-run:
 	docker run -it --rm -d --name ${DOCKER_IMAGE} \
 	-v ${WORKSPACE}/kata:/src/kata/kata:rw \
 	${DOCKER_IMAGE}
+	docker cp ${DOCKER_IMAGE}:/src/kata/vendor ${WORKSPACE}/vendor
 
 docker-stop:
 	docker stop ${DOCKER_IMAGE}

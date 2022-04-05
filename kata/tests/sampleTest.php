@@ -33,5 +33,6 @@ class SampleTest extends TestCase
         $this->assertSame($solution->calculateBowlingScore(['21']), 3, 'score should be 3');
         $this->assertSame($solution->calculateBowlingScore(['x']), 10, 'score should be 10');
         $this->assertSame($solution->calculateBowlingScore(['9/']), 10, 'score should be 10');
+        $this->assertSame($solution->calculateBowlingScore(['--', '1-']), 1, 'score should be 1');
     }
 }

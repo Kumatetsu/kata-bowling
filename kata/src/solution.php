@@ -24,52 +24,49 @@ class Solution
             return 0;
         }
 
-        if ($this->isBonusRound($round)) {
-            array_shift($frames);
-            return $this->calculateBowlingScore($frames, $round + 1);
-        }
+        $frame = array_shift($frames);
 
-        $frame = $frames[0];
-        $score = $this->calculateFrameScore($frame);
-        $score += $this->getBonusScore($frames);
-        array_shift($frames);
-        return $score + $this->calculateBowlingScore($frames, $round + 1);
+        return $this->isBonusRound($round)
+            ? $this->calculateBowlingScore($frames, $round + 1)
+            : $this->calculateFrameScore($frame) + $this->getBonusScore($frame, $frames) + $this->calculateBowlingScore($frames, $round + 1);
     }
 
-    private function getBonusScore(array $frames)
+    private function getBonusScore(string $frame, array $frames): int
     {
-        if (!isset($frames[1])) {
+        if (!isset($frames[0])) {
             return 0;
         }
 
-        if ($this->isSpare($frames[0])) {
+        if ($this->isSpare($frame)) {
             return $this->getSpareBonus($frames);
         }
 
-        if ($this->isStrike($frames[0])) {
+        if ($this->isStrike($frame)) {
             return $this->getStrikeBonus($frames);
         }
 
         return 0;
     }
 
-    private function getStrikeBonus(array $frames)
+    private function getStrikeBonus(array $frames, $count = 1): int
     {
-        if (!isset($frames[1])) {
+        $nextFrame = $frames[0] ?? null;
+        if (!$nextFrame) {
             return 0;
         }
 
-        $bonus = $this->calculateFrameScore($frames[1][0]);
+        $firstThrow = $nextFrame[0];
+        if ($count > 1) {
+            return $this->calculateFrameScore($firstThrow);
+        }
 
-        $secondBonus = $this->isStrike($frames[1][0])
-            ? $this->calculateFrameScore($frames[2][0])
-            : $this->calculateFrameScore($frames[1][1]);
-
-        return $bonus + $secondBonus;
+        return $this->isStrike($firstThrow)
+            ?  ($this->calculateFrameScore($firstThrow) + $this->getStrikeBonus($frames, $count + 1))
+            : $this->calculateFrameScore($nextFrame);
     }
 
     private function getSpareBonus(array $frames) {
-        return isset($frames[1]) ? $this->calculateFrameScore($frames[1][0]) : 0;
+        return isset($frames[0]) ? $this->calculateFrameScore($frames[0][0]) : 0;
     }
 
     private function isSpare(string $frame): bool

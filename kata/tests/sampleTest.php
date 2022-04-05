@@ -34,5 +34,8 @@ class SampleTest extends TestCase
         $this->assertSame($solution->calculateBowlingScore(['x']), 10, 'score should be 10');
         $this->assertSame($solution->calculateBowlingScore(['9/']), 10, 'score should be 10');
         $this->assertSame($solution->calculateBowlingScore(['--', '1-']), 1, 'score should be 1');
+        $this->assertSame($solution->calculateBowlingScore(['-5', '2-']), 7, 'score should be 7');
+        $this->assertSame($solution->calculateBowlingScore(['-5', '2-', 'x']), 17, 'score should be 17');
+        $this->assertSame($solution->calculateBowlingScore(['-/', '2-']), 4, 'score should be 4');
     }
 }

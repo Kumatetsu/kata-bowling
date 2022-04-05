@@ -13,7 +13,7 @@ class Solution
 
     public function calculateBowlingScore($frame)
     {
-        if ($frame === 'x') {
+        if ($frame === 'x' || str_contains($frame, '/')) {
             return 10;
         }
 

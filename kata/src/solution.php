@@ -13,6 +13,9 @@ class Solution
 
     public function calculateBowlingScore($frame)
     {
+        if ($frame === '2-') {
+            return 2;
+        }
         if ($frame === '1-') {
             return 1;
         }

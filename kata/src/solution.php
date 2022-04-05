@@ -17,6 +17,10 @@ class Solution
             return 0;
         }
 
+        if ($frame[0] === '-') {
+            return (int) $frame[1];
+        }
+
         return (int) $frame[0];
     }
 }

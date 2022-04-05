@@ -13,18 +13,13 @@ class Solution
 
     public function calculateBowlingScore($frame)
     {
-        if ($frame === '--') {
-            return 0;
-        }
+        $formattedFrame = $this->replaceMissBy0($frame);
 
-        if (!str_contains($frame, '-')) {
-            return (int) $frame[0] + (int) $frame[1];
-        }
+        return (int) $formattedFrame[0] + (int) $formattedFrame[1];
+    }
 
-        if ($frame[0] === '-') {
-            return (int) $frame[1];
-        }
-
-        return (int) $frame[0];
+    private function replaceMissBy0($frame)
+    {
+        return str_replace('-', '0', $frame);
     }
 }

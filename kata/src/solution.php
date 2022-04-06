@@ -13,6 +13,6 @@ class Solution
 
     public function calculateBowlingScore($frames)
     {
-        return null;
+        return 0;
     }
 }

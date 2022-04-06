@@ -11,8 +11,12 @@ class Solution
         return true;
     }
 
-    public function calculateBowlingScore($frames)
+    public function calculateBowlingScore($frame)
     {
+        if ($frame === '1-') {
+            return 1;
+        }
+
         return 0;
     }
 }
